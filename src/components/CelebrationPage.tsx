@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { LetterPage } from "./LetterPage";
 
 const SWEET_MESSAGES = [
   "You just made me the happiest person in the world! 🌍💖",
@@ -29,6 +30,7 @@ export function CelebrationPage() {
   const [currentMessage, setCurrentMessage] = useState(0);
   const [confetti, setConfetti] = useState<Confetti[]>([]);
   const [loveCount, setLoveCount] = useState(0);
+  const [showLetter, setShowLetter] = useState(false);
 
   useEffect(() => {
     const t1 = setTimeout(() => setShowContent(true), 200);
@@ -212,6 +214,18 @@ export function CelebrationPage() {
               ))}
             </div>
 
+            {/* Read Letter Button */}
+            <button
+              onClick={() => setShowLetter(true)}
+              className="w-full mb-5 bg-gradient-to-r from-rose-400 to-pink-400 hover:from-rose-500 hover:to-pink-500 
+                text-white font-bold py-3 sm:py-4 px-4 sm:px-6 rounded-xl shadow-lg hover:shadow-xl 
+                transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2 text-base sm:text-lg"
+            >
+              <span>💌</span>
+              <span>Read My Love Letter</span>
+              <span>💌</span>
+            </button>
+
             {/* Coupon */}
             <div className="bg-gradient-to-r from-red-500 to-pink-500 rounded-2xl p-4 sm:p-5 text-white text-center relative overflow-hidden">
               <p className="text-[10px] sm:text-xs uppercase tracking-widest mb-1 opacity-80 font-medium">
@@ -254,6 +268,9 @@ export function CelebrationPage() {
 
       {/* Bottom padding */}
       <div className="h-8" />
+
+      {/* Love Letter Modal */}
+      {showLetter && <LetterPage onClose={() => setShowLetter(false)} />}
     </div>
   );
 }
