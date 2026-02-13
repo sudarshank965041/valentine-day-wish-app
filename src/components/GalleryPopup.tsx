@@ -157,20 +157,20 @@ interface CuteImage {
 }
 
 const cuteImages: CuteImage[] = [
-  { id: 1, url: "/src/assets/images/1.jpeg", alt: "Our First Sunset Together ✨", emoji: "💕", color: "from-pink-400 to-rose-500" },
-  { id: 2, url: "/src/assets/images/2.jpeg", alt: "You Make Me Smile 😊", emoji: "💖", color: "from-red-400 to-pink-500" },
-  { id: 3, url: "/src/assets/images/3.jpeg", alt: "Beautiful Moments with You 🌹", emoji: "🌹", color: "from-orange-400 to-red-500" },
-  { id: 4, url: "/src/assets/images/4.jpeg", alt: "Forever in Your Eyes ✨", emoji: "✨", color: "from-yellow-400 to-orange-500" },
-  { id: 5, url: "/src/assets/images/5.jpeg", alt: "My Heart Belongs to You 💝", emoji: "💝", color: "from-pink-400 to-fuchsia-500" },
-  { id: 6, url: "/src/assets/images/6.jpeg", alt: "Dancing Through Life Together 🎀", emoji: "🎀", color: "from-purple-400 to-pink-500" },
-  { id: 7, url: "/src/assets/images/7.jpeg", alt: "Hand in Hand, Always 💗", emoji: "💗", color: "from-red-400 to-rose-500" },
-  { id: 8, url: "/src/assets/images/8.jpeg", alt: "Perfectly Imperfect Together 🌸", emoji: "🌸", color: "from-pink-400 to-rose-400" },
-  { id: 9, url: "/src/assets/images/9.jpeg", alt: "You Complete My Heart 💞", emoji: "💞", color: "from-pink-500 to-red-500" },
-  { id: 10, url: "/src/assets/images/10.jpeg", alt: "Butterfly Kisses & Love 🦋", emoji: "🦋", color: "from-purple-400 to-violet-500" },
-  { id: 11, url: "/src/assets/images/11.jpeg", alt: "You're My Shining Star ⭐", emoji: "⭐", color: "from-blue-400 to-cyan-500" },
-  { id: 12, url: "/src/assets/images/12.jpeg", alt: "Blooming Love 🌺", emoji: "🌺", color: "from-pink-400 to-purple-500" },
-  { id: 13, url: "/src/assets/images/13.jpeg", alt: "You're My Wish Come True 💫", emoji: "💫", color: "from-indigo-400 to-blue-500" },
-  { id: 14, url: "/src/assets/images/14.jpeg", alt: "Happily Ever After with You 🎉", emoji: "🎉", color: "from-yellow-400 to-orange-500" },
+  { id: 1, url: "/images/1.jpeg", alt: "Our First Sunset Together ✨", emoji: "💕", color: "from-pink-400 to-rose-500" },
+  { id: 2, url: "/images/2.jpeg", alt: "You Make Me Smile 😊", emoji: "💖", color: "from-red-400 to-pink-500" },
+  { id: 3, url: "/images/3.jpeg", alt: "Beautiful Moments with You 🌹", emoji: "🌹", color: "from-orange-400 to-red-500" },
+  { id: 4, url: "/images/4.jpeg", alt: "Forever in Your Eyes ✨", emoji: "✨", color: "from-yellow-400 to-orange-500" },
+  { id: 5, url: "/images/5.jpeg", alt: "My Heart Belongs to You 💝", emoji: "💝", color: "from-pink-400 to-fuchsia-500" },
+  { id: 6, url: "/images/6.jpeg", alt: "Dancing Through Life Together 🎀", emoji: "🎀", color: "from-purple-400 to-pink-500" },
+  { id: 7, url: "/images/7.jpeg", alt: "Hand in Hand, Always 💗", emoji: "💗", color: "from-red-400 to-rose-500" },
+  { id: 8, url: "/images/8.jpeg", alt: "Perfectly Imperfect Together 🌸", emoji: "🌸", color: "from-pink-400 to-rose-400" },
+  { id: 9, url: "/images/9.jpeg", alt: "You Complete My Heart 💞", emoji: "💞", color: "from-pink-500 to-red-500" },
+  { id: 10, url: "/images/10.jpeg", alt: "Butterfly Kisses & Love 🦋", emoji: "🦋", color: "from-purple-400 to-violet-500" },
+  { id: 11, url: "/images/11.jpeg", alt: "You're My Shining Star ⭐", emoji: "⭐", color: "from-blue-400 to-cyan-500" },
+  { id: 12, url: "/images/12.jpeg", alt: "Blooming Love 🌺", emoji: "🌺", color: "from-pink-400 to-purple-500" },
+  { id: 13, url: "/images/13.jpeg", alt: "You're My Wish Come True 💫", emoji: "💫", color: "from-indigo-400 to-blue-500" },
+  { id: 14, url: "/images/14.jpeg", alt: "Happily Ever After with You 🎉", emoji: "🎉", color: "from-yellow-400 to-orange-500" },
 ];
 
 // Confetti particle component
