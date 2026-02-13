@@ -1,5 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { LetterPage } from "./LetterPage";
+import { cn } from "@/utils/cn";
+import { GalleryPopup } from "./GalleryPopup";
 
 const SWEET_MESSAGES = [
   "You just made me the happiest person in the world! 🌍💖",
@@ -31,6 +33,8 @@ export function CelebrationPage() {
   const [confetti, setConfetti] = useState<Confetti[]>([]);
   const [loveCount, setLoveCount] = useState(0);
   const [showLetter, setShowLetter] = useState(false);
+  const [showGallery, setShowGallery] = useState(false);
+
 
   useEffect(() => {
     const t1 = setTimeout(() => setShowContent(true), 200);
@@ -92,16 +96,6 @@ export function CelebrationPage() {
         ))}
       </div>
 
-      {/* Celebration Emoji */}
-      <div
-        className={`transition-all duration-700 ease-out ${
-          showContent ? "opacity-100 scale-100" : "opacity-0 scale-0"
-        }`}
-      >
-        <div className="text-6xl sm:text-7xl md:text-8xl animate-celebrate select-none leading-none">
-          🎉
-        </div>
-      </div>
 
       {/* Spacer */}
       <div className="h-4 sm:h-6" />
@@ -113,9 +107,11 @@ export function CelebrationPage() {
         }`}
       >
         <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-tight">
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-red-500 to-rose-500 animate-gradient-text">
-            YAAAAY!
-          </span>
+          <span className="inline-block animate-bounce">💗</span>
+          <span className="inline-block animate-pulse">😘</span>
+          <span className="inline-block animate-bounce">💗</span>
+          <span className="inline-block animate-pulse">🥰</span>
+          <span className="inline-block animate-bounce">💗</span>
         </h1>
         <p className="text-xl sm:text-2xl md:text-3xl font-bold text-pink-600 mt-2">
           You said YES! 😍💖
@@ -214,6 +210,7 @@ export function CelebrationPage() {
               ))}
             </div>
 
+            
             {/* Read Letter Button */}
             <button
               onClick={() => setShowLetter(true)}
@@ -241,6 +238,11 @@ export function CelebrationPage() {
               {/* Coupon notches */}
               <div className="absolute left-0 top-1/2 -translate-y-1/2 w-3 h-6 bg-pink-100 rounded-r-full" />
               <div className="absolute right-0 top-1/2 -translate-y-1/2 w-3 h-6 bg-pink-100 rounded-l-full" />
+            </div>
+            <div className="flex justify-center mt-6 sm:mt-7 pt-2">
+              <div className="px-2">
+                <SparkleButton onClick={() => setShowGallery(true)} />
+              </div>
             </div>
           </div>
         </div>
@@ -271,6 +273,96 @@ export function CelebrationPage() {
 
       {/* Love Letter Modal */}
       {showLetter && <LetterPage onClose={() => setShowLetter(false)} />}
+      {showGallery && <GalleryPopup onClose={() => setShowGallery(false)} />}
+    </div>
+  );
+}
+
+// Enhanced Sparkle Button
+function SparkleButton({ onClick }: { onClick: () => void }) {
+  const [sparkles, setSparkles] = useState<
+    { id: number; x: number; y: number; emoji: string }[]
+  >([]);
+  const [isHovered, setIsHovered] = useState(false);
+  const sparkleEmojis = ["✨", "💖", "⭐", "🌟", "💫"];
+
+  const addSparkle = useCallback(
+    (e: React.MouseEvent) => {
+      const rect = e.currentTarget.getBoundingClientRect();
+      const newSparkle = {
+        id: Date.now() + Math.random(),
+        x: e.clientX - rect.left,
+        y: e.clientY - rect.top,
+        emoji: sparkleEmojis[Math.floor(Math.random() * sparkleEmojis.length)],
+      };
+      setSparkles((prev) => [...prev.slice(-10), newSparkle]);
+      setTimeout(() => {
+        setSparkles((prev) => prev.filter((s) => s.id !== newSparkle.id));
+      }, 800);
+    },
+    []
+  );
+
+  return (
+    <div className="relative">
+      {/* Pulsing ring behind button */}
+      <div className={cn(
+        "absolute inset-0 rounded-full bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 opacity-0 blur-xl transition-all duration-500",
+        isHovered && "opacity-50 scale-110"
+      )} />
+
+      {/* Orbiting dots */}
+      {isHovered && (
+        <div className="animate-rotate-slow absolute inset-[-20px]">
+          {[0, 60, 120, 180, 240, 300].map((deg) => (
+            <div
+              key={deg}
+              className="absolute left-1/2 top-1/2 h-2 w-2 rounded-full bg-pink-400"
+              style={{
+                transform: `rotate(${deg}deg) translateX(calc(50% + 80px)) translateY(-50%)`,
+              }}
+            />
+          ))}
+        </div>
+      )}
+
+      <button
+        onClick={(e) => {
+          addSparkle(e);
+          onClick();
+        }}
+        onMouseMove={addSparkle}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        className="group relative overflow-hidden rounded-full bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 px-12 py-6 text-xl font-bold text-white shadow-2xl shadow-purple-500/30 transition-all duration-500 hover:-translate-y-2 hover:scale-110 hover:shadow-purple-500/50 active:scale-95"
+      >
+        {/* Shimmer sweep */}
+        <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-1000 group-hover:translate-x-full" />
+
+        {/* Bottom highlight */}
+        <div className="absolute inset-x-4 bottom-0 h-px bg-gradient-to-r from-transparent via-white/50 to-transparent" />
+
+        {/* Sparkle particles */}
+        {sparkles.map((sparkle) => (
+          <span
+            key={sparkle.id}
+            className="animate-sparkle-pop pointer-events-none absolute text-sm"
+            style={{ left: sparkle.x, top: sparkle.y }}
+          >
+            {sparkle.emoji}
+          </span>
+        ))}
+
+        <span className="relative flex items-center gap-4">
+          <span className="text-3xl transition-all duration-500 group-hover:rotate-[20deg] group-hover:scale-125">
+            🎀
+          </span>
+          <span className="tracking-wide">Open Cute Gallery</span>
+          <span className="text-3xl transition-all duration-500 group-hover:-rotate-[20deg] group-hover:scale-125">
+            🐱
+          </span>
+        </span>
+      </button>
     </div>
   );
 }
